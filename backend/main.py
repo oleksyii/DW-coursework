@@ -19,8 +19,6 @@ from reviews import reviews as rv
 from users_store import usersStoreMain as usm
 
 
-# TODO: fix conn
-
 app = FastAPI(redoc_url=None)
 
 origins = ["http://localhost:5173"]

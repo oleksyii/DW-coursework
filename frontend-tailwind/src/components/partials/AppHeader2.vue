@@ -1,13 +1,17 @@
 <template>
     <div>
+        <nav class="bg-gray-900">
+            <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-2 py-4">
+                <div class="flex">
+                    <AppDrawer :links="navbarLinks" />
+                    <CartModal />
 
-
-        <nav class="bg-gray-900 ">
-            <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-                <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
-                    <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" />
-                    <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">Flowbite</span>
-                </a>
+                    <button class="flex items-center space-x-3 rtl:space-x-reverse">
+                        <!-- <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" /> -->
+                        <span
+                            class="self-center text-2xl font-semibold whitespace-nowrap text-white">*image*GameOps</span>
+                    </button>
+                </div>
                 <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                     <button type="button"
                         class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-blue-cart"
@@ -71,6 +75,8 @@
 <script setup>
 import { useRegistrationStore } from "@/stores/registrationStore";
 import { ref } from "vue";
+import AppDrawer from "./AppDrawer.vue";
+import CartModal from "../mainpg/CartModal.vue";
 
 const registrationStore = useRegistrationStore();
 
@@ -81,6 +87,15 @@ const isAdmin = ref(registrationStore.isAdmin);
 const headerLinks = ref([
     { label: 'Волонтеру', url: '/' },
     { label: 'Шукачу', url: '/' },
+]);
+
+const navbarLinks = ref([
+    { label: 'Main', url: '/', imgUrl: '/question.png' },
+    { label: 'User', url: '/user', imgUrl: '/question.png' },
+    { label: 'Order', url: '/', imgUrl: '/question.png' },
+    { label: 'Review', url: '/', imgUrl: '/question.png' },
+    { label: 'Export', url: '/export', imgUrl: '/question.png' },
+    { label: 'BI', url: '/bi', imgUrl: '/question.png' },
 ]);
 
 </script>
