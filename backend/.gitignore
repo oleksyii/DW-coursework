@@ -1,0 +1,116 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+data/
+env/
+venv/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# Pyenv
+.python-version
+
+# pipenv
+# According to pipenv documentation
+# https://pipenv.readthedocs.io/en/latest/advanced/#configuration-with-environment-variables
+# PIPENV_IGNORE_VIRTUALENVS tells pipenv to not create a .venv in the project directory
+# PIPENV_VERBOSITY makes sure that log level is at WARNING level
+# PIPENV_TIMEOUT tells pipenv to not wait for user input during the sync process
+# PIPENV_COLORBLIND makes sure that there is no coloring on the output
+PIPENV_IGNORE_VIRTUALENVS=true
+PIPENV_VERBOSITY=-1
+PIPENV_TIMEOUT=900
+PIPENV_COLORBLIND=true
+
+# poetry
+# According to poetry documentation
+# https://python-poetry.org/docs/configuration/#using-environment-variables
+# POETRY_VIRTUALENVS_IN_PROJECT tells poetry to not create a .venv in the project directory
+POETRY_VIRTUALENVS_IN_PROJECT=true
+
+# cookiecutter
+cookiecutter-config-file.json
+
+# ai environment
+# TODO: Change the file name/path according to your environment if you are not using anaconda
+environment.yml
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# IDE files
+.idea/
+.vscode/
+
+# Editors
+*~
+*.swp
