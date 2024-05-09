@@ -1,14 +1,13 @@
 <template>
-    <div class="flex flex-row gap-5 justify-center">
-        <div class="flex flex-col ">
-            <!-- Header -->
+    <div class="flex flex-row gap-5 justify-center ">
+        <div class="flex flex-col w-3/4">
             <div class="bg-blue-tag h-12 flex items-center shadow-md">
-                <span class="text-blue-cart font-semibold text-3xl ms-9">Manage Users</span>
+                <span class="text-blue-cart font-semibold text-3xl ms-9">Manage Reviews</span>
             </div>
 
             <!-- Filters -->
-            <div class="flex justify-center mt-3">
-                <UserFilters />
+            <div class="flex justify-center">
+                <ReviewFilters />
             </div>
 
             <!-- Fetch all -->
@@ -19,10 +18,10 @@
                         <p data-tooltip-target="tooltip-default" class="text-right text-gray-text me-2 self-center">
                             Showing
                             {{
-                                store.users.length }}</p>
+                                store.reviews.length }}</p>
                         <div id="tooltip-default" role="tooltip"
                             class="absolute z-30 invisible inline-block px-3 py-2 text-sm font-medium text-white  rounded-lg shadow-sm opacity-0 tooltip bg-gray-700">
-                            Click to fetch a    ll.
+                            Click to fetch all.
                             <div class="tooltip-arrow" data-popper-arrow></div>
                         </div>
                         <div v-if="loading" role="status">
@@ -41,7 +40,6 @@
                 </button>
             </div>
 
-            <!-- Table -->
             <div class="shadow-lg rounded-lg overflow-auto max-h-[600px]">
                 <Table :fetchedNum="fetchedNum" />
             </div>
@@ -54,26 +52,27 @@
 
 <script setup>
 import { onMounted, ref } from 'vue';
-import { useUserStore } from '@/stores/usersStore.js';
 import { initFlowbite } from 'flowbite'
-import InsertUser from '@/components/user/parts/InsertUser.vue';
-import Table from '@/components/user/parts/UserTable.vue';
-import UserFilters from '@/components/user/parts/UserFilters.vue'
+import Table from '@/components/review/parts/ReviewTable.vue';
+import { useReviewsStore } from '@/stores/reviewsStore';
+import ReviewFilters from './parts/ReviewFilters.vue';
 
 
 const loading = ref(false);
 const fetchedNum = ref(100);
 
-const store = useUserStore();
+const store = useReviewsStore();
 
 onMounted(async () => {
+    await store.fetchAllReviews({ num: fetchedNum.value });
     initFlowbite();
+    // console.log(store.users); // Check if the data is fetched successfully
 });
 
 const fetchAll = async () => {
     fetchedNum.value = -1
     loading.value = true;
-    await store.fetchUserData({ num: fetchedNum.value })
+    await store.fetchAllReviews({ num: fetchedNum.value })
     loading.value = false;
 }
 

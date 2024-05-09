@@ -1,9 +1,10 @@
 <template>
     <!-- Modal toggle -->
     <button data-modal-target="default-modal" data-modal-toggle="default-modal"
-        class="block text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center  bg-blue-600  hover:bg-blue-700  focus:ring-blue-800"
-        type="button">
-        Toggle modal
+        class="block hover:underline focus:ring-4 focus:outline-none rounded-lg focus:ring-blue-800" type="button">
+        <span class="font-medium text-sm align-bottom">
+            Show cart
+        </span>
     </button>
 
     <!-- Main modal -->

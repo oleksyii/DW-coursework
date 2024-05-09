@@ -122,7 +122,7 @@ const headerLinks = ref([
 
 const navbarLinks = ref([
   { label: 'Main', url: '/', imgUrl: '/question.png' },
-  { label: 'User', url: '/user', imgUrl: '/question.png' },
+  { label: 'User', url: '/users', imgUrl: '/question.png' },
   { label: 'Order', url: '/', imgUrl: '/question.png' },
   { label: 'Review', url: '/', imgUrl: '/question.png' },
   { label: 'Export', url: '/export', imgUrl: '/question.png' },

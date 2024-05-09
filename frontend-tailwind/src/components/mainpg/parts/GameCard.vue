@@ -45,7 +45,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
@@ -57,7 +57,7 @@ const props = defineProps({
     },
 });
 
-const game = ref(props.data);
+const game = computed(() => props.data);
 
 </script>
 

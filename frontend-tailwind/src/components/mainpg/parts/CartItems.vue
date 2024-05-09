@@ -38,10 +38,10 @@
                         </th>
                         <td class="px-6 py-4">
                             <p v-if="(item.discounted_price !== item.price) && (item.discounted_price !== 0)">{{
-                                item.discounted_price.toFixed(2) }}
+                                item.discounted_price.toFixed(2) }}$
                             </p>
                             <p v-else>
-                                {{ item.price.toFixed(2) }}
+                                {{ item.price.toFixed(2) }}$
                             </p>
                         </td>
                         <td class="px-6 py-4 text-right">
@@ -52,6 +52,13 @@
                     </tr>
 
                 </tbody>
+                <tfoot>
+                    <tr class="font-semibold text-white">
+                        <th scope="row" class="px-6 py-3 text-base">Total</th>
+                        <td class="px-6 py-3">3</td>
+                        <td class="px-6 py-3">{{ sum }}$</td>
+                    </tr>
+                </tfoot>
             </table>
         </div>
 
@@ -60,7 +67,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 
 const dropItem = (index) => {
     items.value.splice(index, 1);
@@ -92,6 +99,17 @@ const items = ref([
         "app_id": 643980
     },
 ])
+
+const sum = computed(() => {
+    let sum = 0;
+    items.value.forEach(item => {
+        if (item.discounted_price == 0 || item.discounted_price == item.price)
+            sum += item.price
+        else
+            sum += item.discounted_price
+    });
+    return sum;
+})
 </script>
 
 <style lang="scss" scoped></style>

@@ -6,6 +6,12 @@ const router = createRouter({
   routes: [
     {
       path: "/",
+      redirect: "/games/1",
+      // name: "home",
+      // component: HomeView,
+    },
+    {
+      path: "/games/:page",
       name: "home",
       component: HomeView,
     },
@@ -19,9 +25,19 @@ const router = createRouter({
       component: () => import("../views/AboutView.vue"),
     },
     {
-      path: "/user",
-      name: "user",
+      path: "/users",
+      name: "users",
       component: () => import("@/views/UserView.vue"),
+    },
+    {
+      path: "/orders",
+      name: "orders",
+      component: () => import("@/views/OrderView.vue"),
+    },
+    {
+      path: "/reviews",
+      name: "reviews",
+      component: () => import("@/views/ReviewView.vue"),
     },
     {
       path: "/export",

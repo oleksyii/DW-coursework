@@ -1,17 +1,8 @@
 <template>
     <section>
-        <table class=" w-full text-sm text-left rtl:text-right text-gray-400">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-400">
             <thead class="text-xs  uppercase bg-gray-700 text-gray-400">
                 <tr>
-                    <th scope="col" class="px-6 py-3">
-                        <button class="uppercase" @click="toggleSortDirection('id')">
-                            Id
-                            <span v-if="sortField === 'id'" class="ml-1">
-                                <span v-if="sortDirection === 'ASC'">▲</span>
-                                <span v-else>▼</span>
-                            </span>
-                        </button>
-                    </th>
                     <th scope="col" class="px-6 py-3">
                         <button class="uppercase" @click="toggleSortDirection('name')">
                             Name
@@ -31,80 +22,99 @@
                         </button>
                     </th>
                     <th scope="col" class="text-center px-9 py-3">
-                        <button class="uppercase" @click="toggleSortDirection('birth')">
+                        <button class="uppercase" @click="toggleSortDirection('game')">
                             <div class="flex">
-                                Birth
-                                <span v-if="sortField === 'birth'" class="ml-1">
+                                Game
+                                <span v-if="sortField === 'game'" class="ml-1">
                                     <span v-if="sortDirection === 'ASC'">▲</span>
                                     <span v-else>▼</span>
                                 </span>
                             </div>
                         </button>
                     </th>
-                    <th scope="col" class="text-center px-9 py-3">
-                        <button class="uppercase" @click="toggleSortDirection('gender')">
+                    <th scope="col" class="text-center px-6 py-3">
+                        <button class="uppercase" @click="toggleSortDirection('posted_date')">
                             <div class="flex">
-                                Gender
-                                <span v-if="sortField === 'gender'" class="ml-1">
+                                Posted date
+                                <span v-if="sortField === 'posted_date'" class="ml-1">
                                     <span v-if="sortDirection === 'ASC'">▲</span>
                                     <span v-else>▼</span>
                                 </span>
                             </div>
                         </button>
                     </th>
-                    <th scope="col" class="text-center px-9 py-3">
-                        <button class="uppercase" @click="toggleSortDirection('registration_date')">
+                    <th scope="col" class="text-center px-3 py-3">
+                        <button class="uppercase" @click="toggleSortDirection('funny_count')">
                             <div class="flex">
-                                Registration date
-                                <span v-if="sortField === 'registration_date'" class="ml-1">
+                                Funny count
+                                <span v-if="sortField === 'funny_count'" class="ml-1">
                                     <span v-if="sortDirection === 'ASC'">▲</span>
                                     <span v-else>▼</span>
                                 </span>
                             </div>
                         </button>
                     </th>
-                    <th scope="col" class="text-center px-9 py-3">
-                        <button class="uppercase" @click="toggleSortDirection('country')">
+                    <th scope="col" class="text-center px-3 py-3">
+                        <button class="uppercase" @click="toggleSortDirection('useful_count')">
                             <div class="flex">
-                                Country
-                                <span v-if="sortField === 'country'" class="ml-1">
+                                Useful count
+                                <span v-if="sortField === 'useful_count'" class="ml-1">
                                     <span v-if="sortDirection === 'ASC'">▲</span>
                                     <span v-else>▼</span>
                                 </span>
                             </div>
                         </button>
                     </th>
-                    <th scope="col" class="px-6 py-3">
-                        Action
+                    <th scope="col" class="text-center px-3 py-3">
+                        <button class="uppercase" @click="toggleSortDirection('interactions_count')">
+                            <div class="flex">
+                                Interactions count
+                                <span v-if="sortField === 'interactions_count'" class="ml-1">
+                                    <span v-if="sortDirection === 'ASC'">▲</span>
+                                    <span v-else>▼</span>
+                                </span>
+                            </div>
+                        </button>
+                    </th>
+                    <th scope="col" class="text-center px-3 py-3">
+                        <button class="uppercase" @click="toggleSortDirection('recommend')">
+                            <div class="flex">
+                                Recommend
+                                <span v-if="sortField === 'recommend'" class="ml-1">
+                                    <span v-if="sortDirection === 'ASC'">▲</span>
+                                    <span v-else>▼</span>
+                                </span>
+                            </div>
+                        </button>
                     </th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(usr, index) in store.users" :key="index"
+                <tr v-for="(review, index) in store.reviews" :key="index"
                     class="odd:bg-gray-900 even:bg-gray-800 border-b border-gray-700">
-                    <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap text-white">
-                        {{ usr.id }}
-                    </th>
                     <td scope="row" class="px-6 py-4 font-medium whitespace-nowrap text-white">
-                        {{ usr.name }}
+                        {{ review.name }}
                     </td>
                     <td class=" py-4">
-                        {{ usr.user_id_string }}
+                        {{ review.username }}
+                    </td>
+                    <td class="px-3 py-4">
+                        {{ review.game }}
                     </td>
                     <td class="px-3 py-4 text-center">
-                        {{ usr.birthDate }}
+                        {{ review.posted_date }}
                     </td>
-                    <td class="px-6 py-4 text-center">
-                        {{ usr.gender }}
+                    <td class="px-2 py-4 text-center">
+                        {{ review.funny_count }}
                     </td>
-                    <td class="px-6 py-4 text-center">
-                        {{ usr.registration_date }}
+                    <td class="px-2 py-4 text-center">
+                        {{ review.useful_count }}
                     </td>
-                    <td class="px-6 py-4 text-center">
-                        {{ usr.country }}
+                    <td class="px-2 py-4 text-center">
+                        {{ review.interactions_count }}
                     </td>
-                    <td class="px-6 py-4">
-                        <a :href="usr.user_url" class="font-medium  text-blue-500 hover:underline">Profile</a>
+                    <td class="px-2 py-4 text-center">
+                        {{ review.recommend ? 'Yes' : 'No' }}
                     </td>
                 </tr>
             </tbody>
@@ -114,12 +124,14 @@
 
 <script setup>
 import { onMounted, watch, computed, ref } from 'vue';
-import { useUserStore } from '@/stores/usersStore.js';
+import { useReviewsStore } from '@/stores/reviewsStore';
 
-const store = useUserStore();
+const store = useReviewsStore();
 
 onMounted(async () => {
-    await store.fetchUserData({ num: computedData.value });
+    await store.fetchAllReviews({ num: computedData.value });
+    // console.log(store.users); // Check if the data is fetched successfully
+    console.log(computedData.value)
 });
 
 const props = defineProps({
@@ -146,7 +158,7 @@ const toggleSortDirection = async (value) => {
 
 const sortBy = async (value, direction = 'ASC') => {
     console.log(`tryingToSortBy: ${value}`)
-    await store.fetchUserData({ order_by: value, order_direction: direction, num: computedData.value });
+    await store.fetchAllReviews({ order_by: value, order_direction: direction, num: computedData.value });
 }
 
 // Define a computed property to reactively access the data

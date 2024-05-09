@@ -5,7 +5,7 @@ import GamesGrid from '@/components/mainpg/GamesGrid.vue';
 
 <template>
   <main>
-    <Fillings class="z-10" />
+    <!-- <Fillings class="z-10" /> -->
     <GamesGrid />
   </main>
 </template>

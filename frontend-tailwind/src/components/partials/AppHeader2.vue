@@ -1,33 +1,32 @@
 <template>
     <div>
         <nav class="bg-gray-900">
-            <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-2 py-4">
-                <div class="flex">
+            <div class=" flex flex-wrap items-center mx-2 py-4 justify-between">
+                <div class="flex gap-3">
+                    <router-link :to="`/`" class="flex items-center space-x-3 rtl:space-x-reverse">
+                        <!-- <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" /> -->
+                        <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">GameStore</span>
+                    </router-link>
                     <AppDrawer :links="navbarLinks" />
                     <CartModal />
 
-                    <button class="flex items-center space-x-3 rtl:space-x-reverse">
-                        <!-- <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" /> -->
-                        <span
-                            class="self-center text-2xl font-semibold whitespace-nowrap text-white">*image*GameOps</span>
-                    </button>
                 </div>
-                <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                <div class=" flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                     <button type="button"
                         class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-blue-cart"
                         id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown"
                         data-dropdown-placement="bottom">
-                        <div class="flex items-center gap-2 pr-3">
+                        <div class="flex items-center gap-2 p-3" id="navbar-user">
                             <span class="sr-only text-white">Open user menu</span>
-                            <img class="w-8 h-8 rounded-full" src="/images/Profile.png" alt="user photo">
+                            <!-- <img class="w-8 h-8 rounded-full" src="/images/Profile.png" alt="user photo"> -->
                             <span class="text-gray-text text-md">{{ username }}</span>
                         </div>
                     </button>
                     <!-- Dropdown menu -->
                     <div class="z-50 hidden my-4 text-base list-none divide-y rounded-lg shadow bg-gray-700 divide-gray-600"
                         id="user-dropdown">
-                        <div v-if="isSignedIn" class="px-4 py-3">
-                            <span class="block text-sm text-white">Your URL</span>
+                        <div v-if="isSignedIn" id="navbar-user" class="px-4 py-3">
+                            <span class="block text-sm text-white truncate">Your URL</span>
                             <a class="block text-sm  truncate text-gray-400 max-w-48 overflow-clip">link</a>
                         </div>
                         <ul class="py-2" aria-labelledby="user-menu-button">
@@ -38,7 +37,7 @@
                             </li>
                             <li v-else>
                                 <a href="#"
-                                    class="block px-4 py-2 text-sm  hover:bg-gray-600 text-gray-200 hover:text-white">Sing
+                                    class="block px-4 py-2 text-sm  hover:bg-gray-600 text-gray-200 hover:text-white">Sign
                                     In</a>
                             </li>
                         </ul>
@@ -54,7 +53,7 @@
                         </svg>
                     </button>
                 </div>
-                <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">
+                <!-- <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">
                     <ul
                         class="flex flex-col font-medium p-4 md:p-0 mt-4 border rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 bg-gray-800 md:bg-gray-900 border-gray-700">
 
@@ -65,7 +64,7 @@
                         </li>
 
                     </ul>
-                </div>
+                </div> -->
             </div>
         </nav>
 
@@ -74,26 +73,34 @@
 
 <script setup>
 import { useRegistrationStore } from "@/stores/registrationStore";
-import { ref } from "vue";
+import { useGamesStore } from "@/stores/gamesStore";
+import { ref, onMounted } from "vue";
 import AppDrawer from "./AppDrawer.vue";
 import CartModal from "../mainpg/CartModal.vue";
+import { initFlowbite } from 'flowbite'
 
 const registrationStore = useRegistrationStore();
+const gamesStore = useGamesStore()
 
-const username = ref(registrationStore.activeUser);
-const isSignedIn = ref(registrationStore.isSignedIn);
-const isAdmin = ref(registrationStore.isAdmin);
+// const username = ref(registrationStore.activeUser);
+const username = ref(gamesStore.activeUser)
+const isSignedIn = ref(gamesStore.isSignedIn);
+const isAdmin = ref(gamesStore.isAdmin);
 
-const headerLinks = ref([
-    { label: 'Волонтеру', url: '/' },
-    { label: 'Шукачу', url: '/' },
-]);
+// const headerLinks = ref([
+//     { label: 'Волонтеру', url: '/' },
+//     { label: 'Шукачу', url: '/' },
+// ]);
+
+onMounted(() => {
+    initFlowbite();
+})
 
 const navbarLinks = ref([
     { label: 'Main', url: '/', imgUrl: '/question.png' },
-    { label: 'User', url: '/user', imgUrl: '/question.png' },
-    { label: 'Order', url: '/', imgUrl: '/question.png' },
-    { label: 'Review', url: '/', imgUrl: '/question.png' },
+    { label: 'User', url: '/users', imgUrl: '/question.png' },
+    { label: 'Order', url: '/orders', imgUrl: '/question.png' },
+    { label: 'Review', url: '/reviews', imgUrl: '/question.png' },
     { label: 'Export', url: '/export', imgUrl: '/question.png' },
     { label: 'BI', url: '/bi', imgUrl: '/question.png' },
 ]);
